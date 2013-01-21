@@ -1,0 +1,24 @@
+<tool id="reportMK" name="mRNA Markup Report">
+  <description>summary</description>
+  <command interpreter="python"> reportMK.py $out $all $i1 $i2 $i3 $i4 $i5 $i6 $i7 $i8 $i9 $i10</command>
+  <inputs>
+    <param format="fasta" name="all" type="data" label="All sequences"/>
+    <param format="fasta" name="i1" type="data" label="VC_mRNA"/>
+    <param format="fasta" name="i2" type="data" label="BC_mRNA"/>
+    <param format="fasta" name="i3" type="data" label="RA_mRNA"/>
+    <param format="fasta" name="i4" type="data" label="FL_mRNA"/>
+    <param format="fasta" name="i5" type="data" label="not_FL-mRNA"/>
+    <param format="fasta" name="i6" type="data" label="PC_mRNA"/>
+    <param format="fasta" name="i7" type="data" label="not_PC-mRNA"/>
+    <param format="fasta" name="i8" type="data" label="AA_mRNA"/>
+    <param format="fasta" name="i9" type="data" label="CD_mRNA"/>
+    <param format="fasta" name="i10" type="data" label="not_CD-mRNA"/>
+  </inputs>
+  <outputs>
+    <data name="out" type="data" label="Summary.txt"/>
+  </outputs>
+  <help>
+Summary report.
+  </help>
+
+</tool>

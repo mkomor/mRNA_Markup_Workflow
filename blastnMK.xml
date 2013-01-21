@@ -1,0 +1,34 @@
+
+<tool id="blastnMK" name="Blastn">
+  <description>for each sequence in a file</description>
+  <command>
+		$__root_dir__/tools/ncbi-blast-2.2.24+/bin/blastn -db $database.db -out $output -show_gis -evalue 1e-20 -query $fasta_input </command>
+  <inputs>
+    <param format="fasta" name="fasta_input" type="data" label="Fasta file"/>
+    <conditional name="database">
+     <param name="source" type="select" label="Select Database from" help="">
+      <option value="ref">Cached Reference</option>
+      <option value="hist">Your History</option>
+     </param>
+     <when value="ref">
+      <param name="db" type="select" label="Cached Reference - select database" help="">
+       <options from_file="adpb_database.loc">
+        <column name="name" index="0" />
+        <column name="value" index="1" />
+       </options>
+      </param>
+     </when>
+     <when value="hist">
+      <param name="db" type="data" label="Reference database" help=""/>
+     </when>
+    </conditional>
+  </inputs>
+  <outputs>
+    <data name="output" type="data" label="Blastn output file"/>
+  </outputs>
+
+  <help>
+Search a nucleotide database using a nucleotide query
+  </help>
+
+</tool>

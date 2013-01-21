@@ -1,0 +1,16 @@
+<tool id="msbpMK" name="MuSeqBox Partition">
+  <description>for BLAST results separation</description>
+  <command interpreter="python">partMK.py $msbresult $inputseqs $hits $nohits</command>
+  <inputs>
+    <param name="msbresult" type="data" label="MuSeqBox output file"/>
+    <param format="fasta" name="inputseqs" type="data" label="Fasta file with sequences"/>
+  </inputs>
+  <outputs>
+    <data format="fasta" name="hits" type="data" label="msbp outfile: seq with hits"/>
+    <data format="fasta" name="nohits" type="data" label="msbp outfile: seq with no hits"/>
+  </outputs>
+  <help>
+This program separates portions of a sequence that produced blast hits from those that did not.
+  </help>
+
+</tool>

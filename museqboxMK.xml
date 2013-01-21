@@ -1,0 +1,51 @@
+<tool id="museqboxMK" name="MuSeqBox">
+        <description>MuSeqBox examines the BLAST output, extracts the informative parameters of BLAST hits, and saves them in tabular form.
+        </description>
+        <command>
+               $__root_dir__/tools/MUSEQBOX/bin/MuSeqBox -l 40 -p 4 -i $seqs
+        #if $F.__str__ == 'T':
+                -F $F1 $F2 $F3 $F4 $F5 $F6 $msb -o output.txt
+        #end if
+        #if $n.__str__ == 'T':
+                -n $n1
+        #end if
+        #if $s.__str__ == 'T':
+                -s $s1
+        #end if
+        #if $M.__str__ == 'T':
+                -M $M1 $M2
+        #end if
+        #if $q.__str__ == 'T':
+                -q
+        #end if
+        #if $o.__str__ == 'T':
+		#if $F.__str__ == 'F':
+                	-o $msb
+		#end if
+        #end if
+        </command>
+        <inputs>
+        <param type="data" name="seqs" label="Blast output file or MuSeqBox output file"/>
+        <param name="q" type="boolean" truevalue="T" falsevalue="F" checked="True" label="Print the query IDs of queries with no BLAST hits (-q)"/>
+        <param name="F" type="boolean" truevalue="T" falsevalue="F" checked="False" label="Select hits which likely correspond to full-length, 5'- or 3'- coding sequences according to the criteria (-F)"/>
+    	<param name="F1" type="integer" value="5" label="max variance in subject at starting position of 5' end"/>
+    	<param name="F2" type="integer" value="5" label="max variance in subject at ending position of 3' end"/>
+    	<param name="F3" type="integer" value="10" label="max variance in query at starting position of 5' end"/>
+    	<param name="F4" type="integer" value="10" label="max variance in query at ending position of 3' end"/>
+    	<param name="F5" type="integer" value="90" label="minimal cumulative coverage of the matched subject"/>
+    	<param name="F6" type="integer" value="60" label="minimal cumulative coverage of the query"/>
+        <param name="n" type="boolean" truevalue="T" falsevalue="F" checked="False" label="Select the first 'nhits' from the BLAST hit list for each query (-n)"/>
+    	<param name="n1" type="integer" value="1" label="number of hits"/>
+        <param name="s" type="boolean" truevalue="T" falsevalue="F" checked="False" label="select the best 'nhsps' HSPs from each hit (-s)"/>
+    	<param name="s1" type="integer" value="1" label="nhsp"/>
+        <param name="M" type="boolean" truevalue="T" falsevalue="F" checked="False" label="Indicate potential chimeric queries (-M)"/>
+    	<param name="M1" type="integer" value="10" label="mov"/>
+    	<param name="M2" type="integer" value="50" label="mex"/>
+        <param name="o" type="boolean" truevalue="T" falsevalue="F" checked="True" label="Write output to file (-o)"/>
+        </inputs>
+        <outputs>
+        <data name="msb" format="msb" label="MuSeqBox output file"/>
+        </outputs>
+</tool>
+
+

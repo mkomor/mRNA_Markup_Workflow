@@ -1,0 +1,15 @@
+<tool id="mdnMK" name="Make nucleotide database">
+  <description>for BLAST</description>
+  <command>$__root_dir__/tools/ncbi-blast-2.2.24+/bin/makeblastdb -in $input -out $output -dbtype nucl -parse_seqids</command>
+  <inputs>
+    <param format="fasta" name="input" type="data" label="Database"/>
+  </inputs>
+  <outputs>
+    <data name="output" type="data" label="nucleotide BLAST database"/>
+  </outputs>
+
+  <help>
+This tool creats nucleotide BLAST databases.
+  </help>
+
+</tool>

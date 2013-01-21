@@ -1,0 +1,15 @@
+<tool id="mdp" name="Make protein database">
+  <description>for BLAST</description>
+  <command>$__root_dir__/tools/ncbi-blast-2.2.24+/bin/makeblastdb -in $input -out $output -dbtype prot -parse_seqids</command>
+  <inputs>
+    <param format="fasta" name="input" type="data" label="Database"/>
+  </inputs>
+  <outputs>
+    <data name="output" type="data" label="protein BlAST database"/>
+  </outputs>
+
+  <help>
+This tool creates nucleotide BLAST databases.
+  </help>
+
+</tool>

@@ -1,0 +1,42 @@
+<tool id="blastxMK" name="Blastx">
+  <description>for each sequence in a file</description>
+  <command>$__root_dir__/tools/ncbi-blast-2.2.24+/bin/blastx -db $database.db -out $output -show_gis -evalue 1e-20 -query $fasta_input -seg yes 
+  #if $num_descr.__str__ != '0':
+	-num_descriptions $num_descr
+  #end if 
+  #if $num_align.__str__ != '0': 
+	-num_alignments $num_align 
+  #end if 
+  </command>
+  <inputs>
+    <param format="fasta" name="fasta_input" type="data" label="Fasta file"/>
+    <conditional name="database">
+     <param name="source" type="select" label="Select Database from" help="">
+      <option value="ref">Cached Reference</option>
+      <option value="hist">Your History</option>
+     </param>
+     <when value="ref">
+      <param name="db" type="select" label="Cached Reference - select database" help="">
+       <options from_file="adpb_database.loc">
+        <column name="name" index="0" />
+        <column name="value" index="1" />
+       </options>
+      </param>
+     </when>
+     <when value="hist">
+      <param name="db" type="data" label="Reference database" help=""/>
+     </when>
+    </conditional>
+    <param name="num_descr" type="integer" value="0" label="Number of decriptions (suggested 10)"/>
+    <param name="num_align" type="integer" value="0" label="Number of alignments (suggested 5)"/>
+
+  </inputs>
+  <outputs>
+    <data name="output" type="data" label="Blastx output file"/>
+  </outputs>
+
+  <help>
+Search protein database using a translated nucleotide query.
+  </help>
+
+</tool>
